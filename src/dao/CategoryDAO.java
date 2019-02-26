@@ -32,7 +32,7 @@ public class CategoryDAO {
 
     public void add(Category category) {
         String sql = "insert into category values(null,?)";
-        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql);) {
+        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, category.getName());
             ps.execute();
             ResultSet rs = ps.getGeneratedKeys();

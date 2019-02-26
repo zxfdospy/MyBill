@@ -16,27 +16,15 @@ public class GUIUtil {
     private static String ImageFolder="d:/project/MyBill/img";
 
     //打包成jar后资源文件加载不能用File形式
-//    public static void setImageIcon(JButton b,String fileName,String tip,int fontsize,int width,int height){
-//        try(InputStream resource = ClassLoader.class.getResourceAsStream("/img/"+fileName)){
-//            byte[] read=new byte[2048];
-//            resource.read(read);
-//            ImageIcon i=new ImageIcon(read);
-//            b.setIcon(i);
-//        }catch (Exception e){
-//            e.printStackTrace();
-//        }
-//        b.setPreferredSize(new Dimension(width,height));
-//        b.setToolTipText(tip);
-//        b.setVerticalTextPosition(JButton.BOTTOM);
-//        b.setHorizontalTextPosition(JButton.CENTER);
-//        b.setText(tip);
-//        b.setFont(new FontUIResource("微软雅黑",0,fontsize));
-//    }
-
-    //文件形式访问imf资源
     public static void setImageIcon(JButton b,String fileName,String tip,int fontsize,int width,int height){
-        ImageIcon i=new ImageIcon(new File(ImageFolder,fileName).getAbsolutePath());
-        b.setIcon(i);
+        try(InputStream resource = ClassLoader.class.getResourceAsStream("/img/"+fileName)){
+            byte[] read=new byte[2048];
+            resource.read(read);
+            ImageIcon i=new ImageIcon(read);
+            b.setIcon(i);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         b.setPreferredSize(new Dimension(width,height));
         b.setToolTipText(tip);
         b.setVerticalTextPosition(JButton.BOTTOM);
@@ -44,6 +32,18 @@ public class GUIUtil {
         b.setText(tip);
         b.setFont(new FontUIResource("微软雅黑",0,fontsize));
     }
+
+    //文件形式访问imf资源
+//    public static void setImageIcon(JButton b,String fileName,String tip,int fontsize,int width,int height){
+//        ImageIcon i=new ImageIcon(new File(ImageFolder,fileName).getAbsolutePath());
+//        b.setIcon(i);
+//        b.setPreferredSize(new Dimension(width,height));
+//        b.setToolTipText(tip);
+//        b.setVerticalTextPosition(JButton.BOTTOM);
+//        b.setHorizontalTextPosition(JButton.CENTER);
+//        b.setText(tip);
+//        b.setFont(new FontUIResource("微软雅黑",0,fontsize));
+//    }
 
     public static void setImageIcon(JButton b,String fileName,String tip){
         ImageIcon i=new ImageIcon(new File(ImageFolder,fileName).getAbsolutePath());

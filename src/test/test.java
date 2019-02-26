@@ -82,8 +82,8 @@ public class test {
 //            Connection a= DBUtil.getConnection();
 //        System.out.println(DBUtil.connected);
 
-        System.out.println(DBUtil.hutubiliExist());
-        DBUtil.creatHutubill();
-        DBUtil.creatTable();
+//        System.out.println(DBUtil.hutubiliExist());
+//        DBUtil.creatHutubill();
+//        DBUtil.creatTable();
     }
 }

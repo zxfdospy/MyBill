@@ -10,7 +10,7 @@ public class DBUtil {
     static String ip="127.0.0.1";
     static int port=3306;
     static String database="hutubill";
-    static String encoding="UTF-8";
+//    static String encoding="UTF-8";
     static String loginName="root";
     static String password="admin";
 
@@ -18,7 +18,7 @@ public class DBUtil {
 
     static {
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -26,7 +26,7 @@ public class DBUtil {
 
     public static boolean mySQLExist(){
         Connection con=null;
-        String url=String.format("jdbc:mysql://%s:%d",ip,port,database);
+        String url=String.format("jdbc:mysql://%s:%d",ip,port);
         try {
             con=DriverManager.getConnection(url,loginName,password);
             con.close();
@@ -45,7 +45,7 @@ public class DBUtil {
     }
 
     public static void creatHutubill(){
-        String url=String.format("jdbc:mysql://%s:%d",ip,port,database);
+        String url=String.format("jdbc:mysql://%s:%d",ip,port);
         try(Connection c=DriverManager.getConnection(url,loginName,password); Statement s=c.createStatement()) {
             String sql= "create database hutubill;";
             s.execute(sql);
@@ -55,7 +55,7 @@ public class DBUtil {
     }
 
     public static void creatTable(){
-        String[] sql=new String[]{"CREATE TABLE config (id int AUTO_INCREMENT,key_ varchar(255) ,value varchar(255),PRIMARY KEY (id))  DEFAULT CHARSET=utf8;","CREATE TABLE category (id int AUTO_INCREMENT,name varchar(255) ,PRIMARY KEY (id))  DEFAULT CHARSET=utf8;","CREATE TABLE record (id int AUTO_INCREMENT,spend double ,cid int,comment varchar(255) ,date Date,PRIMARY KEY (id),CONSTRAINT `fk_record_category` FOREIGN KEY (`cid`) REFERENCES `category` (`id`))  DEFAULT CHARSET=utf8;"};
+        String[] sql=new String[]{"CREATE TABLE config (id int AUTO_INCREMENT,key_ varchar(255) ,value varchar(255),PRIMARY KEY (id))  DEFAULT CHARSET=utf8mb4;","CREATE TABLE category (id int AUTO_INCREMENT,name varchar(255) ,PRIMARY KEY (id))  DEFAULT CHARSET=utf8;","CREATE TABLE record (id int AUTO_INCREMENT,spend double ,cid int,comment varchar(255) ,date Date,PRIMARY KEY (id),CONSTRAINT `fk_record_category` FOREIGN KEY (`cid`) REFERENCES `category` (`id`))  DEFAULT CHARSET=utf8;"};
         try(Connection c=DBUtil.getConnection();Statement s=c.createStatement()) {
             for (int i = 0; i < 3; i++) {
 //                System.out.println(sql[i]);
@@ -67,10 +67,17 @@ public class DBUtil {
     }
     public static Connection getConnection() throws SQLException {
         Connection con=null;
-        String url=String.format("jdbc:mysql://%s:%d/%s?characterEncoding=%s",ip,port,database,encoding);
+        String url=String.format("jdbc:mysql://%s:%d/%s?autoReconnect=true&useSSL=false&serverTimezone=Asia/Shanghai",ip,port,database);
         con=DriverManager.getConnection(url,loginName,password);
         return con;
     }
 
+//    public static void main(String[] args) {
+//        try {
+//            Connection c=getConnection();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
 }

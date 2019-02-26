@@ -3,13 +3,20 @@
     <output-path>$PROJECT_DIR$/out/artifacts/MyBill_jar</output-path>
     <root id="archive" name="MyBill.jar">
       <element id="module-output" name="MyBill" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/lib/beautyeye_lnf.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/weblaf-complete-1.28.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/chart.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/beautyeye_lnf.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/swingx-core-1.6.2.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/lib/mysql-connector-java-5.0.8-bin.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/mysql-connector-java-8.0.15.jar" path-in-jar="/" />
       <element id="directory" name="img">
-        <element id="dir-copy" path="$PROJECT_DIR$/img" />
+        <element id="file-copy" path="$PROJECT_DIR$/img/backup.png" />
+        <element id="file-copy" path="$PROJECT_DIR$/img/category1.png" />
+        <element id="file-copy" path="$PROJECT_DIR$/img/category2.png" />
+        <element id="file-copy" path="$PROJECT_DIR$/img/config.png" />
+        <element id="file-copy" path="$PROJECT_DIR$/img/home.png" />
+        <element id="file-copy" path="$PROJECT_DIR$/img/record.png" />
+        <element id="file-copy" path="$PROJECT_DIR$/img/report.png" />
+        <element id="file-copy" path="$PROJECT_DIR$/img/restore.png" />
       </element>
     </root>
   </artifact>

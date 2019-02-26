@@ -12,7 +12,7 @@ public class ConfigDAO {
 
     public int getToTal(){
         int total=0;
-        try (Connection c = DBUtil.getConnection(); Statement s = c.createStatement();) {
+        try (Connection c = DBUtil.getConnection(); Statement s = c.createStatement()) {
             String sql="select count(*) from config";
             ResultSet rs=s.executeQuery(sql);
             while (rs.next()){
@@ -26,7 +26,7 @@ public class ConfigDAO {
 
     public void add(Config config){
         String sql="insert into config values(null,?,?)";
-        try(Connection c=DBUtil.getConnection(); PreparedStatement ps=c.prepareStatement(sql);){
+        try(Connection c=DBUtil.getConnection(); PreparedStatement ps=c.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS)){
             ps.setString(1,config.getKey());
             ps.setString(2,config.getValue());
             ps.execute();

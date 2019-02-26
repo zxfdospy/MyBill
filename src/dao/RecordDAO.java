@@ -32,7 +32,7 @@ public class RecordDAO {
     public void add(Record record) {
 
         String sql = "insert into record values(null,?,?,?,?)";
-        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql);) {
+        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS)) {
             ps.setDouble(1, record.getSpend());
             ps.setInt(2, record.getCid());
             ps.setString(3, record.getComment());
@@ -54,7 +54,7 @@ public class RecordDAO {
     public void update(Record record) {
 
         String sql = "update record set spend= ?, cid= ?, comment =?, date = ? where id = ?";
-        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql);) {
+        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
 
             ps.setDouble(1, record.getSpend());
             ps.setInt(2, record.getCid());
